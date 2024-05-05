@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Style for menu items */
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 10px;
+      border: 10px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgb(255, 0, 0);
+      cursor: pointer;
+    }
+    .menu-item:hover {
+      box-shadow: 0 4px 8px rgb(30, 0, 255);
+      transform: scale(1.025);
+
+    }
+    .menu-item img {
+      width: 15%;
+      height: 15%;
+      margin-right: 20px;
+      border-radius: 5px;
+    }
+    .menu-item-details {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5rem;
+    }
+    
+    /*Style for order form*/
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: red;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .menu_item {
+      flex-basis: 300px;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .menu_item img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .menu_item h2 {
+      margin-bottom: 10px;
+    }
+
+    /*.menu_item p {
+      margin-bottom: 20px;
+    }*/
+
+    .menu_item:hover {
+      box-shadow: 0 4px 8px rgb(255, 0, 0);
+      transform: scale(1.10);
+
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu_page" id="top_">
+    <!--Page Tittle-->
+    <header>
+        <h1 class="home_page_title">Munchie Haven Cafeteria</h1>
+    </header>
+    <!--Navigation Bar-->
+    <div class="nav_bar">
+        <nav class="nav_menu">
+            <a href="homepage.html" target="blank">Home</a>
+            <a href="biography.html"class="active" target="blank">Biography</a>
+            <a href="menu.html" target="blank">Menu</a>
+        </nav>
+    </div>
+  </div>
+    <!--Menu-->
+  <div class="menu">
+      <h2>Menu</h2>
+  </div>
+  <div class="menu_text">
+      <p>- For today's menu of dishes, there will be a total of three meals to choose from. Mahambri na Maharagwe, a Kenyan cultural dish which is our today's special will be the first option. Pilau is the second option that is being offered. And for our third meal that is being served, we are providing makloubeh with lamb. </p>
+    </div>
+
+    <!--Choose Meal-->
+    <div class="choose_meal">
+      <h2>Choose a meal:</h2>
+    </div>
+
+    <!--JS-->
+  <div id="menu"></div>
+  <script>
+    // Sample menu items data
+    const menuItems = [
+      { name: "Mahambri na Maharagwe", image: "mahambri na maharagwe.jpg" },
+      { name: "Pilau", image: "pilau.jpg" },
+      { name: "Makloubeh", image: "makloubeh.jpg" }
+    ];
+
+    // Function to generate menu items dynamically
+    function generateMenu() {
+      const menuElement = document.getElementById("menu");
+      menuElement.innerHTML = ""; // Clear existing menu items
+
+      menuItems.forEach(item => {
+        const menuItem = document.createElement("div");
+        menuItem.classList.add("menu-item");
+
+        // Create image element
+        const img = document.createElement("img");
+        img.src = item.image;
+        menuItem.appendChild(img);
+
+        // Create details container
+        const details = document.createElement("div");
+        details.classList.add("menu-item-details");
+
+        // Create name element
+        const name = document.createElement("h3");
+        name.textContent = item.name;
+        details.appendChild(name);
+
+        menuItem.appendChild(details);
+
+        // Add click event listener to each menu item
+        menuItem.addEventListener("click", () => {
+          customizeFood(item);
+        });
+
+        menuElement.appendChild(menuItem);
+      });
+    }
+
+    // Function to customize food options
+    function customizeFood(item) {
+      const toppings = prompt(`Customize your ${item.name} (separate toppings with comma):`);
+      if (toppings !== null) {
+        const options = confirm(`Do you want to add sides to your ${item.name}?`);
+        let order = `You selected ${item.name} with toppings: ${toppings}`;
+        if (options) {
+          const sides = prompt(`Choose sides for your ${item.name} (separate sides with comma):`);
+          order += `\nSides: ${sides}`;
+        }
+        alert(order);
+      }
+    }
+
+    // Call the function to generate menu items
+    generateMenu();
+  </script>
+
+<!--Order Form-->
+<div class="Order_Form_Text">
+  <h2>Order Form</h2>
+</div>
+<div class="menu-container">
+<div class="menu_item">
+  <img src="Mahambri na Maharagwe.jpg" alt="Mahambri na Maharagwe">
+  <h2>Mahambri na Maharagwe</h2>
+  <form id="Mahambri na Maharagwe-form">
+    <label for="Mahambri na Maharagwe-quantity">Quantity:</label>
+    <input type="number" id="Mahambri na Maharagwe-quantity" name="Mahambri na Maharagwe-quantity" min="0" max="10" value="0">
+    <p class="error-message" id="Mahambri na Maharagwe-error"></p>
+  </form>
+</div>
+<div class="menu_item">
+  <img src="Pilau.jpg" alt="Pilau">
+  <h2>Pilau</h2>
+  <form id="Pilau-form">
+    <label for="Pilau-quantity">Quantity:</label>
+    <input type="number" id="Pilau-quantity" name="Pilau-quantity" min="0" max="10" value="0">
+    <p class="error-message" id="Pilau-error"></p>
+  </form>
+</div>
+<div class="menu_item">
+  <img src="Makloubeh.jpg" alt="Makloubeh">
+  <h2>Makloubeh</h2>
+  <form id="Makloubeh-form">
+    <label for="Makloubeh-quantity">Quantity:</label>
+    <input type="number" id="Makloubeh-quantity" name="Makloubeh-quantity" min="0" max="10" value="0">
+    <p class="error-message" id="Makloubeh-error"></p>
+  </form>
+</div>
+</div>
+
+<button id="submit-order">Place Order</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const submitOrderButton = document.getElementById("submit-order");
+
+  submitOrderButton.addEventListener("click", function() {
+    const MahambriNaMaharagweQuantity = parseInt(document.getElementById("Mahambri na Maharagwe-quantity").value);
+    const PilauQuantity = parseInt(document.getElementById("Pilau-quantity").value);
+    const MakloubehQuantity = parseInt(document.getElementById("Makloubeh-quantity").value);
+
+    if (MahambriNaMaharagweQuantity < 0) {
+      document.getElementById("Mahambri na Maharagwe-error").innerText = "Please enter a positive number.";
+      return;
+    } else {
+      document.getElementById("Mahambri na Maharagwe-error").innerText = "";
+    }
+
+    if (PilauQuantity < 0) {
+      document.getElementById("Pilau-error").innerText = "Please enter a positive number.";
+      return;
+    } else {
+      document.getElementById("Pilau-error").innerText = "";
+    }
+
+    if (MakloubehQuantity < 0) {
+      document.getElementById("Makloubeh-error").innerText = "Please enter a positive number.";
+      return;
+    } else {
+      document.getElementById("Makloubeh-error").innerText = "";
+    }
+
+    const totalItems = MahambriNaMaharagweQuantity + PilauQuantity + MakloubehQuantity;
+
+    if (totalItems === 0) {
+      alert("Please select at least one item.");
+      return;
+    }
+
+    // If all validation checks pass, submit the form
+    const confirmationMessage = `Your order: \n${MahambriNaMaharagweQuantity} Mahambri na Maharagwe, ${PilauQuantity} Pilau, ${MakloubehQuantity} Makloubeh`;
+    alert(confirmationMessage);
+  });
+});
+</script>
+      
+    <!--Up Arrow-->
+
+      <a
+      title="Scroll to top"
+      href="#top_"
+      class="scrollUpBtn"
+      >^</a>
+
+  <!--Footer(contact infomation)-->
+  <hr>
+  <footer class="foot_er">
+      <p>&copy; 2024 University of Houston - All Rights Reserved</p>
+      <p>Get in contact with us.</p>
+      <p>Contact us at: <a href="mailto:amsalim3@cougarnet.uh.edu">amsalim3@cougarnet.uh.edu</a></p>
+      <p>Phone Number: <a href="#">123-456-7890</a></p>
+  </footer>
+</body>
+</html>
